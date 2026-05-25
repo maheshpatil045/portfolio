@@ -36,25 +36,60 @@ export default function App() {
 
   const projects = [
     {
-      title: "AI Content Generator",
-      description: "Generative AI tool for automated content creation",
-      tech: ["Python", "OpenAI", "React"],
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600",
+      title: "AdIndiaHub",
+      description: "System for managing  advertisment campaigns",
+      tech: ["Python", "Flask", "MySql"],
+      image : "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "Sales Analytics Dashboard",
-      description: "Interactive Power BI dashboard for insights",
-      tech: ["Power BI", "SQL", "DAX"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600",
+      title: "Air Quality Index Forecasting",
+      description: "ML model to predict AQI levels",
+      tech: ["Python", "Scikit-learn", "Matplotlib"],
+      image : "https://images.unsplash.com/photo-1711078291729-7f8e60527e0a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "E-commerce Database",
-      description: "Database system with optimization",
-      tech: ["PostgreSQL", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a164?w=600",
+      title: "Fake News Detection Usinng NLP",
+      description: "Ml model to classify news articles as real or fake",
+      tech: ["Python", "NLTK", "Scikit-learn"],
+      image: "https://plus.unsplash.com/premium_photo-1707690324434-ed39913a983c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      title: "Real Estate Price Prediction",
+      description: "Ml model to predict house prices based on features",
+      tech: ["Python", "Pandas", "Scikit-learn"],
+      image: "https://plus.unsplash.com/premium_photo-1681487767138-ddf2d67b35c1?q=80&w=1555&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
+
+  // Certificates images (achievements, courses, recognitions)
+  const certificatesImages = [
+    {
+      url: "/src/deloite.jpg.jpg",
+      title: "Data analytics Certificate",
+      category: "certificate"
+    },
+    {
+      url: "/src/Tata.jpg.jpg",
+      title: "GenAI Powered Data analytics Certification",
+      category: "certificate"
+    },
+    {
+      url: "/src/ai.jpg",
+      title: "Generative AI Certificate",
+      category: "certificate"
+    },
+    {
+        url: "/src/deloitetech.jpg.jpg",
+        title: "Technology Job Simulation Certification",
+      category: "certificate"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600",
+      title: "React & Frontend Development",
+      category: "certificate"
+    }
+  ];
   // ----- NEW: Gallery / Collage & Certificates data -----
   // Collage images (personal moments, work snapshots, learning events)
   const collageImages = [
@@ -87,35 +122,6 @@ export default function App() {
       url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600",
       title: "Learning Gen AI",
       category: "collage"
-    }
-  ];
-
-  // Certificates images (achievements, courses, recognitions)
-  const certificatesImages = [
-    {
-      url: "/src/deloite.jpg.jpg",
-      title: "Data analytics Certificate",
-      category: "certificate"
-    },
-    {
-      url: "/src/Tata.jpg.jpg",
-      title: "GenAI Powered Data analytics Certification",
-      category: "certificate"
-    },
-    {
-      url: "/src/ai.jpg",
-      title: "Generative AI Certificate",
-      category: "certificate"
-    },
-    {
-        url: "/src/deloitetech.jpg.jpg",
-        title: "Technology Job Simulation Certification",
-      category: "certificate"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600",
-      title: "React & Frontend Development",
-      category: "certificate"
     }
   ];
 
@@ -192,7 +198,9 @@ export default function App() {
           <div className="hero-text">
             <h2 className="hero-greeting">Hello, I'm</h2>
             <h1 className="hero-name">Mahesh Patil</h1>
-            <p className="hero-role">BCS Graduate | Data Science & Gen AI Learner</p>
+            <p className="hero-role">BCS Graduate | Python Full Stack | Data Science & Gen AI Learner</p>
+            <h2 className="hero-greeting">Education</h2>
+            <p className="hero-description">D.B.F.DAYANAND COLLEGE OF ARTS & SCIENCE SOLAPUR</p>
             <p className="hero-description">
               Passionate about transforming data into meaningful insights and building intelligent solutions
             </p>
