@@ -8,8 +8,8 @@ import certificate4 from './deloitetech.jpg.jpg';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // State for gallery tab (collage or certificates)
-  const [galleryTab, setGalleryTab] = useState('collage');
+  // State for gallery tab (certificates or collage)
+  const [galleryTab, setGalleryTab] = useState('certificates');
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
@@ -37,27 +37,31 @@ export default function App() {
   const projects = [
     {
       title: "AdIndiaHub",
-      description: "System for managing  advertisment campaigns",
+      description: "System for managing advertisment campaigns",
       tech: ["Python", "Flask", "MySql"],
       image : "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      status: "live" // This project is live
     },
     {
       title: "Air Quality Index Forecasting",
       description: "ML model to predict AQI levels",
       tech: ["Python", "Scikit-learn", "Matplotlib"],
       image : "https://images.unsplash.com/photo-1711078291729-7f8e60527e0a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      status: "coming-soon"
     },
     {
       title: "Fake News Detection Usinng NLP",
       description: "Ml model to classify news articles as real or fake",
       tech: ["Python", "NLTK", "Scikit-learn"],
-      image: "https://plus.unsplash.com/premium_photo-1707690324434-ed39913a983c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      image: "https://plus.unsplash.com/premium_photo-1707690324434-ed39913a983c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      status: "coming-soon"
     },
     {
       title: "Real Estate Price Prediction",
       description: "Ml model to predict house prices based on features",
       tech: ["Python", "Pandas", "Scikit-learn"],
       image: "https://plus.unsplash.com/premium_photo-1681487767138-ddf2d67b35c1?q=80&w=1555&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      status: "coming-soon"
     },
   ];
 
@@ -167,7 +171,7 @@ export default function App() {
   };
 
   // Get current gallery items based on selected tab
-  const currentGalleryItems = galleryTab === 'collage' ? collageImages : certificatesImages;
+  const currentGalleryItems = galleryTab === 'certificates' ? certificatesImages : collageImages;
 
   return (
     <div className="app">
@@ -293,10 +297,16 @@ export default function App() {
                     ))}
                   </div>
                   <div className="project-buttons">
-                    <button className="project-btn" 
-                     onClick={() => window.open('https://github.com', '_blank')}>
-                      <i className="fab fa-github"></i> GitHub
-                    </button>
+                    {project.status === 'live' ? (
+                      <button className="project-btn" 
+                       onClick={() => window.open('https://github.com/maheshpatil045', '_blank')}>
+                        <i className="fab fa-github"></i> Github
+                      </button>
+                    ) : (
+                      <button className="project-btn coming-soon-btn" disabled>
+                        <i className="fas fa-hourglass-half"></i> Coming Soon
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -305,22 +315,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* NEW: Gallery & Certificates Section (Collage + Certificates) */}
+      {/* NEW: Gallery & Certificates Section (Certificates + Collage) */}
       <section id="gallery" className="gallery-section">
         <div className="container">
           <h2 className="section-title">Moments & Milestones</h2>
           <div className="gallery-tabs">
             <button 
-              className={`gallery-tab-btn ${galleryTab === 'collage' ? 'active' : ''}`}
-              onClick={() => setGalleryTab('collage')}
-            >
-              <i className="fas fa-images"></i> My Gallery
-            </button>
-            <button 
               className={`gallery-tab-btn ${galleryTab === 'certificates' ? 'active' : ''}`}
               onClick={() => setGalleryTab('certificates')}
             >
               <i className="fas fa-certificate"></i> Certificates
+            </button>
+            <button 
+              className={`gallery-tab-btn ${galleryTab === 'collage' ? 'active' : ''}`}
+              onClick={() => setGalleryTab('collage')}
+            >
+              <i className="fas fa-images"></i> My Gallery
             </button>
           </div>
 
@@ -340,8 +350,8 @@ export default function App() {
                 <div className="gallery-info">
                   <h4>{item.title}</h4>
                   <span className="gallery-badge">
-                    {galleryTab === 'collage' ? <i className="fas fa-camera"></i> : <i className="fas fa-award"></i>}
-                    {' '}{galleryTab === 'collage' ? 'Memory' : 'Credential'}
+                    {galleryTab === 'certificates' ? <i className="fas fa-award"></i> : <i className="fas fa-camera"></i>}
+                    {' '}{galleryTab === 'certificates' ? 'Credential' : 'Memory'}
                   </span>
                 </div>
               </div>
@@ -369,16 +379,16 @@ export default function App() {
                 <p><i className="fas fa-map-marker-alt"></i> solapur, India</p>
               </div>
               <div className="social-links">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                <a href="https://www.linkedin.com/in/mahesh-patil45" target="_blank" rel="noopener noreferrer" className="social-link">
                   <i className="fab fa-linkedin"></i> LinkedIn
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                <a href="https://github.com/maheshpatil045" target="_blank" rel="noopener noreferrer" className="social-link">
                   <i className="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                  <i className="fab fa-twitter"></i> Twitter
+                <a href="https://wa.me/917666961350" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <i className="fab fa-whatsapp"></i> WhatsApp
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                <a href="https://www.instagram.com/___mahesh__045/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" className="social-link">
                   <i className="fab fa-instagram"></i> Instagram
                 </a>
               </div>
@@ -481,6 +491,17 @@ export default function App() {
           color: #2563eb;
           font-weight: 500;
         }
+        
+        /* Coming Soon Button Styles */
+        .coming-soon-btn {
+          background: #f59e0b !important;
+          cursor: not-allowed !important;
+        }
+        .coming-soon-btn:hover {
+          transform: none !important;
+          background: #f59e0b !important;
+        }
+        
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: block;
