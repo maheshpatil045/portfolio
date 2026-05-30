@@ -28,6 +28,15 @@ export default function App()
     return 'night';
   });
   const [showThemeMenu, setShowThemeMenu] = useState(false);
+  
+  // Load More / Show Less states
+  const [visibleProjects, setVisibleProjects] = useState(3);
+  const [visibleCertificates, setVisibleCertificates] = useState(3);
+  
+  // Toast Notification states
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -61,32 +70,54 @@ export default function App()
       setIsMenuOpen(false);
     }
   };
+  
   const sendEmail = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  emailjs.send(
-    "service_snmq3rn",
-    "template_wbh6zs3",
-    {
-      from_name: e.target.from_name.value,
-      from_email: e.target.from_email.value,
-      message: e.target.message.value
-    },
-    "PGucDR1TeQz2r54Qq"
-  )
-  .then(() => {
-    alert("Message Sent Successfully!");
-  })
-  .catch((error) => {
-    console.log(error);
-    alert(error.text);
-  });
+    emailjs.send(
+      "service_snmq3rn",
+      "template_wbh6zs3",
+      {
+        from_name: e.target.from_name.value,
+        from_email: e.target.from_email.value,
+        message: e.target.message.value
+      },
+      "PGucDR1TeQz2r54Qq"
+    )
+    .then(() => {
+      setToastMessage(" Message Sent Successfully!");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    })
+    .catch((error) => {
+      console.log(error);
+      setToastMessage("Failed to send message!");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    });
 
-  e.target.reset();
-};
+    e.target.reset();
+  };
  
   const downloadResume = () => {
     alert('Resume download will be available soon!');
+  };
+
+  // Load More / Show Less functions
+  const loadMoreProjects = () => {
+    setVisibleProjects(prev => prev + 2);
+  };
+  
+  const showLessProjects = () => {
+    setVisibleProjects(3);
+  };
+  
+  const loadMoreCertificates = () => {
+    setVisibleCertificates(prev => prev + 3);
+  };
+  
+  const showLessCertificates = () => {
+    setVisibleCertificates(3);
   };
 
   const skills = [
@@ -94,10 +125,10 @@ export default function App()
     { name: "SQL", level: 80, icon: "fas fa-database", color: "#4479A1" },
     { name: "Power BI", level: 85, icon: "fas fa-chart-line", color: "#F2C811" },
     { name: "React", level: 75, icon: "fab fa-react", color: "#61DAFB" },
-    { name: "JavaScript", level: 80, icon: "fab fa-js", color: "#F7DF1E" },
+    { name: "Statistics", level: 80, icon: "fas fa-chart-pie", color: "#4CAF50" },
     { name: "Excel", level: 90, icon: "fas fa-file-excel", color: "#217346" },
-    { name: "Gen AI", level: 75, icon: "fas fa-robot", color: "#00A67E" },
-    { name: "Data Analysis", level: 85, icon: "fas fa-chart-bar", color: "#9B59B6" },
+    { name: "Cloud DevOps", level: 80, icon: "fas fa-cloud", color: "#2196F3" },
+    { name: "AI/ML", level: 80, icon: "fas fa-brain", color: "#9C27B0" },
   ];
 
   const projects = [
@@ -172,6 +203,8 @@ export default function App()
   
 
   const currentGalleryItems = galleryTab === 'certificates' ? certificatesImages : collageImages;
+  const visibleProjectsList = projects.slice(0, visibleProjects);
+  const visibleCertificatesList = currentGalleryItems.slice(0, visibleCertificates);
 
   const getHeroImageTransform = () => {
     const centerX = window.innerWidth / 2;
@@ -183,6 +216,19 @@ export default function App()
 
   return (
     <div className="app">
+      {/* Custom Toast Notification */}
+      {showToast && (
+        <div className="custom-toast">
+          <div className="toast-content">
+            <i className="fas fa-bell"></i>
+            <span>{toastMessage}</span>
+            <button className="toast-close" onClick={() => setShowToast(false)}>
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* 3D Background */}
       <div className="background-3d">
         <div className="gradient-sphere"></div>
@@ -304,6 +350,14 @@ export default function App()
           {/* Hero Image */}
           <div className="hero-image-wrapper">
             <div className="hero-image-3d" style={{ transform: getHeroImageTransform() }}>
+              {/* Simple Pulse Rings */}
+              <div className="pulse-ring ring-1"></div>
+              <div className="pulse-ring ring-2"></div>
+              
+              {/* Simple Floating Orbs */}
+              <div className="floating-orb orb-1"></div>
+              <div className="floating-orb orb-2"></div>
+              
               <div className="image-glow"></div>
               <img src={profile} alt="Mahesh Patil" />
               <div className="floating-badge badge-1">
@@ -343,7 +397,6 @@ export default function App()
                     <span className="edu-date">Nov 2026</span>
                   </div>
                   <div className="edu-institute">
-                    {/* Display DBF logo correctly */}
                     <img src={certificate6} alt="DBF logo" className="collage-logo" style={{ width: '45px', height: '45px', objectFit: 'contain', marginRight: '10px', verticalAlign: 'middle' }} />
                     <span>D.B.F.Dayanand College Of Arts & Science Solapur</span>
                   </div>
@@ -358,7 +411,6 @@ export default function App()
                     <span className="edu-date">Apr 2023</span>
                   </div>
                   <div className="edu-institute">
-                    {/* Display cbk logo correctly */}
                     <img src={certificate7} alt="cbk logo" className="collage-logo" style={{ width: '45px', height: '45px', objectFit: 'contain', marginRight: '10px', verticalAlign: 'middle' }} />
                     <span>C.B.Khedgi's Basaveshwar Science, Raja Vijaysinh Commerce & Raja Jaysinh Arts College Akkalkot</span>
                   </div>
@@ -373,7 +425,6 @@ export default function App()
                     <span className="edu-date">Mar 2021</span>
                   </div>
                   <div className="edu-institute">
-                    {/* Display cbk logo correctly */}
                     <img src={certificate8} alt="ssk logo" className="collage-logo" style={{ width: '45px', height: '45px', objectFit: 'contain', marginRight: '10px', verticalAlign: 'middle' }} />
                     <span> Sou . Surekha Kalyanshetti Vidyalay Akkalkot</span>
                   </div>
@@ -414,12 +465,12 @@ export default function App()
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section with Load More / Show Less */}
       <section id="projects" className="projects">
         <div className="container">
           <h2 className="section-title"><span className="title-icon">🚀</span> Featured Projects</h2>
           <div className="projects-grid">
-            {projects.map((project, index) => (
+            {visibleProjectsList.map((project, index) => (
               <div key={index} className="project-card">
                 <div className="project-image">
                   <img src={project.image} alt={project.title} />
@@ -450,13 +501,27 @@ export default function App()
               </div>
             ))}
           </div>
+          
+          {/* Load More / Show Less Buttons for Projects */}
+          <div className="load-buttons">
+            {visibleProjects < projects.length && (
+              <button className="load-more" onClick={loadMoreProjects}>
+                <i className="fas fa-plus-circle"></i> Load More Projects
+              </button>
+            )}
+            {visibleProjects > 3 && (
+              <button className="show-less" onClick={showLessProjects}>
+                <i className="fas fa-minus-circle"></i> Show Less
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section with Load More / Show Less */}
       <section id="gallery" className="gallery-section">
         <div className="container">
-          <h2 className="section-title"><span className="title-icon">📸</span> Moments & Milestones</h2>
+          <h2 className="section-title"><span className="title-icon">🎯</span>  Milestones & Moments </h2>
           <div className="gallery-tabs">
             <button className={`gallery-tab-btn ${galleryTab === 'certificates' ? 'active' : ''}`} onClick={() => setGalleryTab('certificates')}>
               <i className="fas fa-certificate"></i> Certificates
@@ -466,7 +531,7 @@ export default function App()
             </button>
           </div>
           <div className="gallery-grid">
-            {currentGalleryItems.map((item, idx) => (
+            {visibleCertificatesList.map((item, idx) => (
               <div key={idx} className="gallery-item" onClick={() => handleImageClick(item.url, item.title)}>
                 <img src={item.url} alt={item.title} className="gallery-img" loading="lazy" />
                 <div className="gallery-info">
@@ -478,6 +543,20 @@ export default function App()
                 </div>
               </div>
             ))}
+          </div>
+          
+          {/* Load More / Show Less Buttons for Gallery */}
+          <div className="load-buttons">
+            {visibleCertificates < currentGalleryItems.length && (
+              <button className="load-more" onClick={loadMoreCertificates}>
+                <i className="fas fa-plus-circle"></i> Load More {galleryTab === 'certificates' ? 'Certificates' : 'Photos'}
+              </button>
+            )}
+            {visibleCertificates > 3 && (
+              <button className="show-less" onClick={showLessCertificates}>
+                <i className="fas fa-minus-circle"></i> Show Less
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -503,13 +582,13 @@ export default function App()
               </div>
             </div>
             <form className="contact-form" onSubmit={sendEmail}>
-  <input type="text" name="from_name" placeholder="Your Name" required />
-  <input type="email" name="from_email" placeholder="Your Email" required />
-  <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-  <button type="submit" className="btn-primary">
-    Send Message
-  </button>
-</form>
+              <input type="text" name="from_name" placeholder="Your Name" required />
+              <input type="email" name="from_email" placeholder="Your Email" required />
+              <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+              <button type="submit" className="btn-primary">
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>

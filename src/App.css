@@ -50,22 +50,13 @@ body[data-theme="afternoon"] {
   --bg-primary: #f8fafc;
   --bg-secondary: #eef2f7;
   --bg-card: rgba(255, 255, 255, 0.7);
-
   --text-primary: #0f172a;
   --text-secondary: #475569;
-
   --border-color: rgba(15, 23, 42, 0.08);
-
   --gradient-start: #0f172a;
   --gradient-end: #2563eb;
-
   --shadow-color: rgba(15, 23, 42, 0.12);
-
-  --hero-overlay: radial-gradient(
-    circle at 30% 40%,
-    rgba(37, 99, 235, 0.10) 0%,
-    transparent 65%
-  );
+  --hero-overlay: radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.10) 0%, transparent 65%);
 }
 
 body {
@@ -243,7 +234,7 @@ body {
   width: 22px;
 }
 
-/* ========== NAVBAR - KAMI KELI (REDUCED HEIGHT) ========== */
+/* ========== NAVBAR ========== */
 .navbar {
   position: fixed;
   top: 0;
@@ -251,21 +242,20 @@ body {
   width: 100%;
   z-index: 1000;
   transition: all 0.3s ease;
-
   border-bottom: 1px solid var(--border-color);
 }
 
 .navbar.scrolled {
   background: var(--bg-card);
-  backdrop-filter: transparent;
-  border-bottom: 0px solid var(--gradient-start);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(0px);
+  border-bottom: 1px solid var(--gradient-start);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
   max-width: 1400px;
-  margin: 1 auto;
-  padding: 0rem 2rem;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -279,7 +269,7 @@ body {
 }
 
 .logo-text {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(105deg, var(--gradient-start), var(--gradient-end));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -295,7 +285,7 @@ body {
 
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
+  50% { opacity: 0.5; transform: scale(1.0); }
 }
 
 .nav-links {
@@ -323,7 +313,7 @@ body {
   bottom: 0;
   left: 0;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
   transition: width 0.3s ease;
 }
@@ -342,7 +332,7 @@ body {
   z-index: 1001;
 }
 
-/* ========== HERO SECTION - WELCOME BADGE CLEARLY VISIBLE ========== */
+/* ========== HERO SECTION ========== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -350,21 +340,21 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--hero-overlay);
-  padding-top: 70px;
+  padding-top: 90px;
   margin-top: 0;
 }
 
 .hero-content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0.5rem 2rem 2rem 2rem;
+  padding: 2rem 2rem 4rem 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
 }
 
-/* Welcome Badge - MORE PROMINENT */
+/* Welcome Badge */
 .hero-greeting-badge {
   display: inline-flex;
   align-items: center;
@@ -392,7 +382,6 @@ body {
   75% { transform: rotate(-10deg); }
 }
 
-/* Hello Text */
 .hero-hello {
   margin-bottom: 0.5rem;
 }
@@ -485,7 +474,7 @@ body {
   flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary, .btn-resume {
+.btn-primary, .btn-resume {
   padding: 0.7rem 1.8rem;
   border: none;
   border-radius: 50px;
@@ -558,7 +547,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* Hero Image 3D */
+/* ==================== ADVANCED PROFILE PICTURE BACKGROUND ANIMATION ==================== */
 .hero-image-wrapper {
   position: relative;
   display: flex;
@@ -574,6 +563,349 @@ body {
   transform-style: preserve-3d;
 }
 
+/* ===== 1. MULTI-LAYER PULSE RINGS ===== */
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ring-1 {
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(168, 85, 247, 0.7);
+  animation: pulseRingAdvanced 3s ease-out infinite;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.ring-2 {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(236, 72, 153, 0.6);
+  animation: pulseRingAdvanced 3s ease-out 0.6s infinite;
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+}
+
+.ring-3 {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  animation: pulseRingAdvanced 3s ease-out 1.2s infinite;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.ring-4 {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  animation: pulseRingAdvanced 3s ease-out 1.8s infinite;
+}
+
+.ring-5 {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  animation: pulseRingAdvanced 3s ease-out 2.4s infinite;
+}
+
+@keyframes pulseRingAdvanced {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    border-width: 3px;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    width: 220%;
+    height: 220%;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* ===== 2. ROTATING GRADIENT BORDER ===== */
+.hero-image-3d::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--gradient-start),
+    #ff00ff,
+    var(--gradient-end),
+    #00ffff,
+    var(--gradient-start)
+  );
+  animation: rotateBorderAdvanced 4s linear infinite;
+  z-index: -1;
+  opacity: 0.8;
+  filter: blur(2px);
+}
+
+@keyframes rotateBorderAdvanced {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== 3. GLOWING ORB WITH COLOR CHANGE ===== */
+.glowing-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(168, 85, 247, 0.5) 0%, 
+    rgba(236, 72, 153, 0.4) 25%,
+    rgba(59, 130, 246, 0.3) 50%,
+    transparent 80%);
+  filter: blur(25px);
+  animation: orbPulseAdvanced 4s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes orbPulseAdvanced {
+  0%, 100% {
+    width: 90%;
+    height: 90%;
+    opacity: 0.6;
+    filter: blur(25px);
+    background: radial-gradient(circle, 
+      rgba(168, 85, 247, 0.5) 0%, 
+      rgba(236, 72, 153, 0.4) 25%,
+      rgba(59, 130, 246, 0.3) 50%,
+      transparent 80%);
+  }
+  25% {
+    background: radial-gradient(circle, 
+      rgba(236, 72, 153, 0.5) 0%, 
+      rgba(59, 130, 246, 0.4) 25%,
+      rgba(168, 85, 247, 0.3) 50%,
+      transparent 80%);
+  }
+  50% {
+    width: 110%;
+    height: 110%;
+    opacity: 1;
+    filter: blur(35px);
+    background: radial-gradient(circle, 
+      rgba(59, 130, 246, 0.5) 0%, 
+      rgba(168, 85, 247, 0.4) 25%,
+      rgba(236, 72, 153, 0.3) 50%,
+      transparent 80%);
+  }
+  75% {
+    background: radial-gradient(circle, 
+      rgba(168, 85, 247, 0.5) 0%, 
+      rgba(59, 130, 246, 0.4) 25%,
+      rgba(236, 72, 153, 0.3) 50%,
+      transparent 80%);
+  }
+}
+
+/* ===== 4. PARTICLE EFFECT ===== */
+.hero-image-3d::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    transparent 40%,
+    rgba(168, 85, 247, 0.08) 60%,
+    rgba(236, 72, 153, 0.05) 70%,
+    transparent 85%);
+  animation: particlePulseAdvanced 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes particlePulseAdvanced {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* ===== 5. FLOATING ENERGY ORBS ===== */
+.energy-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gradient-start), transparent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatEnergy 6s ease-in-out infinite;
+}
+
+.energy-orb-1 {
+  width: 15px;
+  height: 15px;
+  top: 10%;
+  left: -20%;
+  animation-delay: 0s;
+  background: radial-gradient(circle, #a855f7, transparent);
+}
+
+.energy-orb-2 {
+  width: 20px;
+  height: 20px;
+  bottom: 5%;
+  right: -25%;
+  animation-delay: 1.5s;
+  background: radial-gradient(circle, #ec4899, transparent);
+}
+
+.energy-orb-3 {
+  width: 12px;
+  height: 12px;
+  top: 50%;
+  left: -30%;
+  animation-delay: 3s;
+  background: radial-gradient(circle, #3b82f6, transparent);
+}
+
+.energy-orb-4 {
+  width: 18px;
+  height: 18px;
+  bottom: 30%;
+  right: -35%;
+  animation-delay: 4.5s;
+  background: radial-gradient(circle, #10b981, transparent);
+}
+
+@keyframes floatEnergy {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(20px, -30px) scale(1.5);
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(50px, -60px) scale(2);
+  }
+}
+
+/* ===== 6. SHIMMER EFFECT ON IMAGE ===== */
+.hero-image-3d img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) padding-box, 
+              linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) border-box;
+  box-shadow: 0 20px 40px var(--shadow-color);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  animation: imageShimmer 3s ease-in-out infinite;
+}
+
+@keyframes imageShimmer {
+  0%, 100% {
+    filter: brightness(1) contrast(1);
+    box-shadow: 0 20px 40px var(--shadow-color);
+  }
+  50% {
+    filter: brightness(1.05) contrast(1.02);
+    box-shadow: 0 25px 50px rgba(168, 85, 247, 0.5);
+  }
+}
+
+/* ===== 7. HOLOGRAPHIC SCAN LINE ===== */
+.scan-line {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(168, 85, 247, 0.15),
+    rgba(236, 72, 153, 0.15),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: scanMove 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 50%;
+}
+
+@keyframes scanMove {
+  0% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+  50% {
+    transform: rotate(45deg) translateY(100%);
+  }
+  100% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+}
+
+/* ===== 8. RIPPLE EFFECT ===== */
+.ripple-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gradient-start), transparent);
+  opacity: 0;
+  animation: ripple 2s ease-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
 .image-glow {
   position: absolute;
   top: 50%;
@@ -585,18 +917,18 @@ body {
   border-radius: 50%;
   filter: blur(20px);
   z-index: -1;
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
-.hero-image-3d img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) padding-box, 
-              linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) border-box;
-  box-shadow: 0 20px 40px var(--shadow-color);
-  transition: all 0.3s ease;
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(30px);
+  }
 }
 
 .floating-badge {
@@ -611,8 +943,9 @@ body {
   align-items: center;
   gap: 0.4rem;
   border: 1px solid var(--border-color);
-  animation: float 3s ease-in-out infinite;
+  animation: floatAdvanced 3s ease-in-out infinite;
   color: var(--text-primary);
+  z-index: 3;
 }
 
 .badge-1 {
@@ -633,9 +966,15 @@ body {
   animation-delay: 1s;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes floatAdvanced {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg);
+    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.3));
+  }
+  50% { 
+    transform: translateY(-15px) rotate(3deg);
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));
+  }
 }
 
 .scroll-indicator {
@@ -671,14 +1010,14 @@ body {
 
 /* Section Styles */
 .about, .skills, .projects, .gallery-section, .contact {
-  padding: 4rem 0;
+  padding: 5rem 0;
   position: relative;
 }
 
 .section-title {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -767,13 +1106,14 @@ body {
   border: 1px solid var(--border-color);
 }
 
-.edu-institute{
+.edu-institute {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: 0.4rem;
 }
 
-.college-logo{
+.college-logo {
   width: 45px;
   height: 45px;
   object-fit: contain;
@@ -809,6 +1149,7 @@ body {
 
 .stat {
   text-align: center;
+  flex: 1;
 }
 
 .stat h3 {
@@ -1045,13 +1386,13 @@ body {
   box-shadow: 0 5px 15px var(--shadow-color);
 }
 
-.demo-btn {
+.coming-soon-btn {
   background: var(--bg-card);
   border: 1px solid var(--gradient-start);
   color: var(--gradient-start);
 }
 
-.demo-btn:hover {
+.coming-soon-btn:hover {
   background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   color: white;
   transform: translateY(-2px);
@@ -1271,11 +1612,124 @@ body {
 /* Footer */
 .footer {
   text-align: center;
-  padding: 1.5rem;
+  padding: 2rem;
   border-top: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 0.85rem;
   background: var(--bg-card);
+}
+
+/* ==================== LOAD MORE / SHOW LESS BUTTONS ==================== */
+.load-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.load-more {
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+}
+
+.load-more:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+.show-less {
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ef4444;
+  color: white;
+}
+
+.show-less:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+/* ==================== CUSTOM TOAST NOTIFICATION ==================== */
+.custom-toast {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 10000;
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.toast-content {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  font-size: 0.9rem;
+  min-width: 280px;
+  backdrop-filter: blur(10px);
+}
+
+.toast-content i:first-child {
+  font-size: 1.1rem;
+  animation: bellShake 0.5s ease;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: auto;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.toast-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
 }
 
 /* Responsive Design */
@@ -1310,7 +1764,7 @@ body {
     flex-direction: column;
     background: var(--bg-card);
     backdrop-filter: blur(20px);
-    padding: 4rem 1.8rem 2rem;
+    padding: 5rem 1.8rem 2rem;
     transition: right 0.3s ease;
     gap: 1.2rem;
     border-left: 1px solid var(--gradient-start);
@@ -1331,7 +1785,7 @@ body {
   }
 
   .hero-name {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
   
   .hero-description {
@@ -1356,10 +1810,24 @@ body {
   .floating-badge {
     display: none;
   }
+  
+  /* Hide rings on mobile */
+  .ring-1, .ring-2, .ring-3, .ring-4, .ring-5,
+  .energy-orb, .scan-line, .ripple-effect {
+    display: none;
+  }
+  
+  .hero-image-3d::before {
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+  }
 
   .about-stats {
     justify-content: center;
     gap: 1.2rem;
+    flex-wrap: wrap;
   }
 
   .contact-content {
@@ -1413,6 +1881,23 @@ body {
     padding: 0.4rem 1rem;
     font-size: 0.85rem;
     margin-bottom: 1rem;
+  }
+  
+  .load-more, .show-less {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .custom-toast {
+    top: 70px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .toast-content {
+    font-size: 0.8rem;
+    padding: 0.7rem 1.2rem;
+    min-width: auto;
   }
 }
 
@@ -1476,5 +1961,19 @@ body {
   
   .greeting-icon {
     font-size: 1rem;
+  }
+  
+  .load-more, .show-less {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+  }
+  
+  .custom-toast {
+    top: 60px;
+  }
+  
+  .toast-content {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
   }
 }
