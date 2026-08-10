@@ -13,6 +13,7 @@ import certificate6 from "./DBF.jpg";
 import certificate7 from "./cbk.jpg";
 import certificate8 from "./ssk.jpg";
 
+
 export default function App()
  {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -100,9 +101,13 @@ export default function App()
   };
  
   const downloadResume = () => {
-    alert('Resume download will be available soon!');
-  };
-
+  const link = document.createElement("a");
+  link.href = resume;
+  link.download = "Resume_Mahesh.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   // Load More / Show Less functions
   const loadMoreProjects = () => {
     setVisibleProjects(prev => prev + 2);
@@ -121,14 +126,13 @@ export default function App()
   };
 
   const skills = [
-    { name: "Python", level: 85, icon: "fab fa-python", color: "#3776AB" },
-    { name: "SQL", level: 80, icon: "fas fa-database", color: "#4479A1" },
-    { name: "Power BI", level: 85, icon: "fas fa-chart-line", color: "#F2C811" },
-    { name: "React", level: 75, icon: "fab fa-react", color: "#61DAFB" },
-    { name: "Statistics", level: 80, icon: "fas fa-chart-pie", color: "#4CAF50" },
-    { name: "Excel", level: 90, icon: "fas fa-file-excel", color: "#217346" },
-    { name: "Cloud DevOps", level: 80, icon: "fas fa-cloud", color: "#2196F3" },
-    { name: "AI/ML", level: 80, icon: "fas fa-brain", color: "#9C27B0" },
+    { name: "Python", level: 95, icon: "fab fa-python", color: "#3776AB" },
+    { name: "SQL", level: 90, icon: "fas fa-database", color: "#4479A1" },
+    { name: "Power BI", level: 65, icon: "fas fa-chart-line", color: "#F2C811" },
+    { name: "Statistics", level: 70, icon: "fas fa-chart-pie", color: "#4CAF50" },
+    { name: "Excel", level: 50, icon: "fas fa-file-excel", color: "#217346" },
+    { name: "Cloud DevOps", level: 20, icon: "fas fa-cloud", color: "#2196F3" },
+    { name: "AI/ML", level: 30, icon: "fas fa-brain", color: "#9C27B0" },
   ];
 
   const projects = [
@@ -166,9 +170,7 @@ export default function App()
   const certificatesImages = [
     { url: certificate1, title: "Data Analytics Certificate - Deloitte" },
     { url: certificate2, title: "GenAI Powered Data Analytics - Tata" },
-    { url: certificate3, title: "Generative AI Certificate" },
-    { url: certificate4, title: "Technology Job Simulation - Deloitte" },
-    { url: certificate4, title: "Technology Job Simulation - Deloitte" },
+    
   ];
 
   const collageImages = [
@@ -325,9 +327,13 @@ export default function App()
               <button className="btn-primary" onClick={() => scrollToSection('projects')}>
                 Explore My Work <i className="fas fa-arrow-right"></i>
               </button>
-              <button className="btn-resume" onClick={downloadResume}>
-                <i className="fas fa-download"></i> Download Resume
-              </button>
+              <a
+  href="/Resume_Mahesh.pdf"
+  download="Mahesh_Patil_Resume.pdf"
+  className="btn-resume"
+>
+  <i className="fas fa-download"></i> Download Resume
+</a>
             </div>
             
             {/* Stats */}
@@ -402,7 +408,7 @@ export default function App()
                   </div>
                   <div className="edu-score">
                     <span className="score-label">CGPA:</span>
-                    <span className="score-value">8.00 / 10.00</span>
+                    <span className="score-value">7.74 / 10.00</span>
                   </div>
                 </div>
                 <div className="education-item">
@@ -595,7 +601,7 @@ export default function App()
 
       <footer className="footer">
         <div className="container">
-          <p>© 2026 Mahesh Patil. All rights reserved. | Built with React & ❤️</p>
+          <p>© 2026 Mahesh Patil ❤️</p>
         </div>
       </footer>
     </div>
